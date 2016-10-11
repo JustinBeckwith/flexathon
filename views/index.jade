@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  ul
+    li
+      a(href='/sio') Socket.io
+    li
+      a(href='/sse') Server sent events
+    li
+      a(href='/env') Environment variables
+    li
+      a(href='/headers') HTTP Request headers
