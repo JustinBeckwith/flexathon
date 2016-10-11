@@ -14,7 +14,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.static(path.join(__dirname, 'public')));
 
-
 app.use('/headers', function(req, res) {
   res.end(JSON.stringify(req.headers, null, 4) + "\n\n");
 }); 
@@ -36,7 +35,7 @@ app.use('/sse-api', (req, res) => {
     cnt++;
     client.send('SSE message: ' + cnt);
 
-  }, 1000);
+  }, 100);
   client.onClose(() => {
     if (handle) clearInterval(handle);
     console.log("Bye client!")
