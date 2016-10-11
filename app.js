@@ -7,6 +7,7 @@ var app = express();
 
 var server = require('http').createServer(app);  
 var io = require('socket.io')(server);
+io.set('transports', ['polling']);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
