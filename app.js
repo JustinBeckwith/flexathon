@@ -29,13 +29,14 @@ app.use('/sse', (req, res) =>  {
 app.use('/sse-api', (req, res) => {
   var cnt = 0;
   console.log('in sse-api endpoint');
+  res.setHeader('X-Accel-Buffering', 'no');
   var client = SSE(req, res);
   client.send("Hello world from your sse!");
   var handle = setInterval(() => { 
     cnt++;
     client.send('SSE message: ' + cnt);
 
-  }, 100);
+  }, 10);
   client.onClose(() => {
     if (handle) clearInterval(handle);
     console.log("Bye client!")
@@ -45,6 +46,11 @@ app.use('/sse-api', (req, res) => {
 app.use('/sio', (req, res) => {
   res.render('sio');
 });
+
+app.use('/ssl', (req, res) => {
+  res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
+  res.render('ssl');
+})
 
 app.use('/', (req, res) => {
   res.render('index', { title: "Flex"});
