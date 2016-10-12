@@ -10,15 +10,15 @@ socket.on('connect', function(data) {
   socket.emit('join', 'Hello World from client');
 });
 
-socket.on('pong', function(data) {
-  console.log('getting pong...');
+socket.on('engine', function(data) {
+  console.log('getting engine...');
   console.log(data);
-  alert('pong');
+  alert('engine');
 });
 
 var btn = document.getElementById('ping');
 btn.onclick = function() {
-  console.log('sending ping...');
-  socket.emit('pingading', 'here is a ping');
+  console.log('sending app...');
+  socket.emit('app', 'here is an app');
 }
 

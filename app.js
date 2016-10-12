@@ -49,6 +49,7 @@ app.use('/sio', (req, res) => {
 
 app.use('/ssl', (req, res) => {
   res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
+  console.log('Strict-Transport-Security: ' + res.getHeader('Strict-Transport-Security'));
   res.render('ssl');
 })
 
@@ -59,9 +60,9 @@ app.use('/', (req, res) => {
 
 io.on('connection', (socket) => {  
   console.log('Client connected...');
-  socket.on('pingading', (data) => {
-    console.log('received event: ping');
-    socket.emit('pong');
+  socket.on('app', (data) => {
+    console.log('received event: app');
+    socket.emit('engine');
   });
   socket.on('join', (data) => {
     console.log('received event: join');
