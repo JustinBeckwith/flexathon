@@ -1,0 +1,4 @@
+cron:
+- description: hit it all day long
+  url: /env
+  schedule: every 1 minutes
